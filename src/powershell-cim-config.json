@@ -1,0 +1,83 @@
+{
+    "$schema": "../node_modules/@msft-sme/shell/dist/tools/gulp-ps-cim/powershell-cim-config-schema.json",
+    "collection": [
+        {
+            "name": "Start-CimService",
+            "description": "Start a service using CIM Win32_Service class.",
+            "roles": [
+                "Administrators"
+            ],
+            "type": "invokeMethodInstance",
+            "namespace": "root/cimv2",
+            "className": "Win32_Service",
+            "methodName": "StartService",
+            "keyProperties": [
+                {
+                    "name": "Name",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "Suspend-CimService",
+            "description": "Suspend a service using CIM Win32_Service class.",
+            "roles": [
+                "Administrators"
+            ],
+            "type": "invokeMethodInstance",
+            "namespace": "root/cimv2",
+            "className": "Win32_Service",
+            "methodName": "PauseService",
+            "keyProperties": [
+                {
+                    "name": "Name",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "Resume-CimService",
+            "description": "Resume a service using CIM Win32_Service class.",
+            "roles": [
+                "Readers"
+            ],
+            "type": "invokeMethodInstance",
+            "namespace": "root/cimv2",
+            "className": "Win32_Service",
+            "methodName": "ResumeService",
+            "keyProperties": [
+                {
+                    "name": "Name",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "Get-CimServiceDetail",
+            "description": "Gets services in details using MSFT_ServerManagerTasks class.",
+            "roles": [
+                "Readers"
+            ],
+            "type": "invokeMethodStatic",
+            "namespace": "root/microsoft/windows/servermanager",
+            "className": "MSFT_ServerManagerTasks",
+            "methodName": "GetServerServiceDetail"
+        },
+        {
+            "name": "Get-CimSingleService",
+            "description": "Gets the service instance of CIM Win32_Service class.",
+            "roles": [
+                "Readers"
+            ],
+            "type": "getInstanceSingle",
+            "namespace": "root/cimv2",
+            "className": "Win32_Service",
+            "keyProperties": [
+                {
+                    "name": "Name",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}

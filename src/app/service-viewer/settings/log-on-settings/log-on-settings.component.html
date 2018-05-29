@@ -1,0 +1,64 @@
+<form [formGroup]="settingsForm" id="sme-service-log-on-settings" class="tool-container" aria-labelledby="sme-setting-title">
+  <sme-settings-content>
+    <sme-loading-wheel *ngIf="loading">
+    </sme-loading-wheel>
+    <div *ngIf="!loading">
+      <div class="form-group">
+        <div class="radio">
+          <label for="sme-services-account-local" (click)="onLocalClick()">
+            <input id="sme-services-account-local" type="radio" formControlName='account' [value]="0"/><span>{{ strings.MsftSmeServiceViewer.Settings.LogOn.LocalSystemAccount }}</span>
+          </label>
+        </div>
+        <div class="radio radio-sublist">
+          <label for="sme-services-account-other" (click)="onOtherClick()">
+              <input id="sme-services-account-other" type="radio" formControlName='account' [value]="1"/><span>{{ strings.MsftSmeServiceViewer.Settings.LogOn.ThisAccount }}</span>
+          </label>
+          <div class="form-group sme-margin-left-xl">
+            <div class="form-input">
+              <label for="sme-services-username" class="control-label logon-label">{{ strings.MsftSmeServiceViewer.Settings.LogOn.Username }}</label>
+              <p class="pull-right">
+                <span>{{strings.MsftSmeServiceViewer.Forms.Required}}</span>
+              </p>
+              <input type="text" class="form-control" id="sme-services-username" formControlName="username" />
+              <div *ngIf="formErrors.username" class="alert alert-danger" role="alert">
+                {{formErrors.username}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group sme-margin-left-xl">
+            <div class="form-input">
+              <label for="sme-services-password" class="control-label logon-label">{{ strings.MsftSmeServiceViewer.Settings.LogOn.Password }}</label>
+              <p class="pull-right">
+                <span>{{strings.MsftSmeServiceViewer.Forms.Required}}</span>
+              </p>
+              <input type="password" class="form-control" id="sme-services-password" formControlName="password" />
+              <div *ngIf="formErrors.password" class="alert alert-danger" role="alert">
+                {{formErrors.password}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group sme-margin-left-xl">
+            <div class="form-input">
+              <label for="sme-services-confirmPassword" class="control-label logon-label">{{ strings.MsftSmeServiceViewer.Settings.LogOn.ConfirmPassword }}</label>
+              <p class="pull-right">
+                <span>{{strings.MsftSmeServiceViewer.Forms.Required}}</span>
+              </p>
+              <input type="password" class="form-control" id="sme-services-confirmPassword" formControlName="confirmPassword" />
+              <div *ngIf="formErrors.confirmPassword" class="alert alert-danger" role="alert">
+                {{formErrors.confirmPassword}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sme-settings-content>
+  <sme-settings-footer class="footer">
+    <div class="pull-left">
+      <button type="submit" class="btn btn-primary" (click)="onSaveClick()" [disabled]="!settingsForm.dirty || !settingsForm.valid"
+        form="sme-service-log-on-settings">{{strings.MsftSmeServiceViewer.save}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onDiscardClick()" [disabled]="!settingsForm.dirty">{{strings.MsftSmeServiceViewer.discard}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onCloseClick()">{{strings.MsftSmeServiceViewer.close}}</button>
+    </div>
+  </sme-settings-footer>
+</form>

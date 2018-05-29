@@ -1,0 +1,19 @@
+<form [formGroup]="settingsForm" id="sme-service-dependencies-settings" class="tool-container" aria-labelledby="sme-setting-title">
+  <sme-settings-content>
+    <sme-loading-wheel *ngIf="loading">
+    </sme-loading-wheel>
+    <div *ngIf="!loading">
+
+      <!-- PUT FORM HERE  -->
+
+    </div>
+  </sme-settings-content>
+  <sme-settings-footer class="footer">
+    <div class="pull-left">
+      <button type="submit" class="btn btn-primary" (click)="onSaveClick()" [disabled]="!settingsForm.dirty || !settingsForm.valid"
+        form="sme-service-dependencies-settings">{{strings.MsftSmeServiceViewer.save}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onDiscardClick()" [disabled]="!settingsForm.dirty">{{strings.MsftSmeServiceViewer.discard}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onCloseClick()">{{strings.MsftSmeServiceViewer.close}}</button>
+    </div>
+  </sme-settings-footer>
+</form>

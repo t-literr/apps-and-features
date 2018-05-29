@@ -1,0 +1,51 @@
+<sme-loading-wheel *ngIf="loading" [message]="loadingMessage"></sme-loading-wheel>
+<sme-split-view class="stretch-absolute flex-layout vertical" #sv>
+    <sme-split-view-content>
+        <sme-master-view [header]="strings.MsftSmeServiceViewer.toolDisplayName" [showSelection]="false" [total]="services ? services.length : 0" [showFilter]="false" [showRefresh]="false" (clearSelection)="selectedService=null">
+            <sme-action-bar>
+                <sme-action-button #action [text]="startStopButtonText" [enabled]="startStopButtonEnabled" iconClass="{{ startStopButtonIcon }}" (execute)="startStopService()"> </sme-action-button>
+                <sme-action-button #action [text]="pauseResumeButtonText" [enabled]="pauseResumeButtonEnabled" iconClass="{{ pauseResumeButtonIcon }}" (execute)="pauseResumeService()"> </sme-action-button>
+                <sme-action-button #action [text]="strings.MsftSmeServiceViewer.configureServiceText" [enabled]="selectedService" iconClass="sme-icon icon-win-settings" (execute)="configureService()">
+                </sme-action-button>
+            </sme-action-bar>
+
+            <input #search type="search" pInputText placeholder={{strings.MsftSmeServiceViewer.searchServices}} autofocus>
+
+            <sme-data-table #smeDataTable [items]="services" [(selection)]="selectedService" (onRowSelect)="onRowSelect($event.data)" (onRowUnselect)="onRowUnselect($event.data)" [globalFilter]="search" [defaultSortMode]="1" [defaultSortColumn]="defaultSortColumn">
+                <sme-data-table-column #defaultSortColumn field="name" header="{{name}}" [sortable]="true">
+                </sme-data-table-column>
+                <sme-data-table-column field="displayName" header="{{displayName}}" [sortable]="true">
+                </sme-data-table-column>
+                <sme-data-table-column field="status" header="{{status}}" [sortable]="true">
+                </sme-data-table-column>
+                <sme-data-table-column field="startupType" header="{{startupType}}" [sortable]="true">
+                </sme-data-table-column>
+            </sme-data-table>
+
+        </sme-master-view>
+    </sme-split-view-content>
+    <sme-split-view-pane>
+        <sme-details [title]="strings.MsftSmeServiceViewer.details + (selectedService ? (' - ' + selectedService.displayName) : '')" [(isExpanded)]="sv.isExpanded">
+            <div class="details-wrapper stretch-width">
+                <div *ngIf="!selectedService">
+                    {{strings.MsftSmeServiceViewer.noServiceSelected}}  kiujhiuh
+
+                </div>
+                <div *ngIf="selectedService" class="details-panel stretch-width">
+                    <div>
+                        <label>{{strings.MsftSmeServiceViewer.description}}: </label>
+                        <div> {{ selectedService.description }}</div>
+                    </div>
+                    <div>
+                        <label>{{strings.MsftSmeServiceViewer.dependencies}}: </label>
+                        <div *ngFor="let dependent of serviceDependencyList">
+                            <div>{{dependent}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </sme-details>
+    </sme-split-view-pane>
+</sme-split-view>
+
+<sme-confirmation-list-dialog id="services-cnfdialog"></sme-confirmation-list-dialog>

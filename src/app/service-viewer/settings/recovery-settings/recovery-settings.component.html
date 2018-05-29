@@ -1,0 +1,84 @@
+<form [formGroup]="settingsForm" id="sme-service-recovery-settings" class="tool-container" aria-labelledby="sme-setting-title">
+  <sme-settings-content>
+    <sme-loading-wheel *ngIf="loading">
+    </sme-loading-wheel>
+    <div *ngIf="!loading">
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-firstFailureAction" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.FirstFailure }}</label>
+          <div class="sme-select">
+            <select formControlName="firstFailureAction" id="sme-hyperv-firstFailureAction">
+                <option *ngFor="let recoveryOption of recoveryOptions" [value]="recoveryOption.failureAction">{{ recoveryOption.label }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-secondFailureAction" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.SecondFailure }}</label>
+          <div class="sme-select">
+            <select formControlName="secondFailureAction" id="sme-hyperv-secondFailureAction">
+                <option *ngFor="let recoveryOption of recoveryOptions" [value]="recoveryOption.failureAction">{{ recoveryOption.label }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-thirdFailureAction" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.ThirdFailure }}</label>
+          <div class="sme-select">
+            <select formControlName="thirdFailureAction" id="sme-hyperv-thirdFailureAction">
+                <option *ngFor="let recoveryOption of recoveryOptions" [value]="recoveryOption.failureAction">{{ recoveryOption.label }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-resetFailCount" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.ResetFailCount }}</label>
+          <p class="pull-right">
+            <span>{{strings.MsftSmeServiceViewer.Forms.Required}}</span>
+          </p>
+          <input type="number" class="form-control" id="sme-hyperv-resetFailCount" formControlName="resetFailCountInterval" required
+            aria-required="true" />
+          <div *ngIf="formErrors.resetFailCountInterval" class="alert alert-danger" role="alert">
+            {{formErrors.resetFailCountInterval}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-restartService" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.RestartService }}</label>
+          <p class="pull-right">
+            <span>{{strings.MsftSmeServiceViewer.Forms.Required}}</span>
+          </p>
+          <input type="number" class="form-control" id="sme-hyperv-restartService" formControlName="restartServiceInterval" />
+          <div *ngIf="formErrors.restartServiceInterval" class="alert alert-danger" role="alert">
+            {{formErrors.restartServiceInterval}}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-pathToProgram">{{ strings.MsftSmeServiceViewer.Settings.Recovery.RunProgram }}</label>
+          <input class="form-control" type="text" formControlName="pathToProgram" id="sme-hyperv-pathToProgram" />
+          <button type="button" (click)="onBrowseProgramPathClick()" class="btn btn-primary" [disabled]="settingsForm.get('pathToProgram').disabled">{{strings.MsftSmeServiceViewer.Settings.Recovery.Browse}}</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="sme-hyperv-programParameters" class="control-label">{{ strings.MsftSmeServiceViewer.Settings.Recovery.ProgramParameters }}</label>
+          <input type="text" class="form-control" id="sme-hyperv-programParameters" formControlName="programParameters" />
+        </div>
+      </div>
+    </div>
+  </sme-settings-content>
+  <sme-settings-footer class="footer">
+    <div class="pull-left">
+      <button type="submit" class="btn btn-primary" (click)="onSaveClick()" [disabled]="!settingsForm.dirty || !settingsForm.valid"
+        form="sme-service-recovery-settings">{{strings.MsftSmeServiceViewer.save}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onDiscardClick()" [disabled]="!settingsForm.dirty">{{strings.MsftSmeServiceViewer.discard}}</button>
+      <button type="button" class="btn btn-secondary" (click)="onCloseClick()">{{strings.MsftSmeServiceViewer.close}}</button>
+    </div>
+  </sme-settings-footer>
+</form>

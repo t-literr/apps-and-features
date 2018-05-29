@@ -1,0 +1,190 @@
+{
+  "$schema": "../node_modules/@msft-sme/shell/dist/core/manifest/module-schema.json#",
+  "name": "msft.sme.service-viewer",
+  "displayName": "resources:strings:displayName",
+  "description": "resources:strings:description",
+  "target": "/modules/msft.sme.service-viewer",
+  "jea": true,
+  "icon": "sme-icon:icon-win-processing",
+  "keywords": [
+    "resources:strings:keywords_services"
+  ],
+  "entryPoints": [
+    {
+      "entryPointType": "tool",
+      "name": "main",
+      "urlName": "services",
+      "displayName": "resources:strings:displayName",
+      "description": "resources:strings:description",
+      "icon": "sme-icon:icon-win-processing",
+      "path": "",
+      "requirements": [
+        {
+          "solutionIds": [
+            "msft.sme.server-manager!servers",
+            "msft.sme.server-manager!windowsClients"
+          ],
+          "connectionTypes": [
+            "msft.sme.connection-type.server",
+            "msft.sme.connection-type.windows-client"
+          ]
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "locale": "default",
+      "strings": {
+        "description": "Display and manage Windows services",
+        "displayName": "Services",
+        "keywords_services": "Services"
+      }
+    },
+    {
+      "locale": "cs-CZ",
+      "strings": {
+        "description": "Zobrazit a spravovat služby Windows",
+        "displayName": "Služby",
+        "keywords_services": "Služby"
+      }
+    },
+    {
+      "locale": "de-DE",
+      "strings": {
+        "description": "Windows-Dienste anzeigen und verwalten",
+        "displayName": "Dienste",
+        "keywords_services": "Dienste"
+      }
+    },
+    {
+      "locale": "en-US",
+      "strings": {
+        "description": "Display and manage Windows services",
+        "displayName": "Services",
+        "keywords_services": "Services"
+      }
+    },
+    {
+      "locale": "es-ES",
+      "strings": {
+        "description": "Mostrar y administrar servicios de Windows",
+        "displayName": "Servicios",
+        "keywords_services": "Servicios"
+      }
+    },
+    {
+      "locale": "fr-FR",
+      "strings": {
+        "description": "Afficher et gérer les services Windows",
+        "displayName": "Services",
+        "keywords_services": "Services"
+      }
+    },
+    {
+      "locale": "hu-HU",
+      "strings": {
+        "description": "Windows-szolgáltatások megjelenítése és kezelése",
+        "displayName": "Szolgáltatások",
+        "keywords_services": "Szolgáltatások"
+      }
+    },
+    {
+      "locale": "it-IT",
+      "strings": {
+        "description": "Visualizza e gestisci servizi di Windows",
+        "displayName": "Servizi",
+        "keywords_services": "Servizi"
+      }
+    },
+    {
+      "locale": "ja-JP",
+      "strings": {
+        "description": "Windows サービスを表示および管理します",
+        "displayName": "サービス",
+        "keywords_services": "サービス"
+      }
+    },
+    {
+      "locale": "ko-KR",
+      "strings": {
+        "description": "Windows 서비스 표시 및 관리",
+        "displayName": "서비스",
+        "keywords_services": "서비스"
+      }
+    },
+    {
+      "locale": "nl-NL",
+      "strings": {
+        "description": "Windows-services weergeven en beheren",
+        "displayName": "Services",
+        "keywords_services": "Services"
+      }
+    },
+    {
+      "locale": "pl-PL",
+      "strings": {
+        "description": "Wyświetl usługi systemu Windows i zarządzaj nimi",
+        "displayName": "Usługi",
+        "keywords_services": "Usługi"
+      }
+    },
+    {
+      "locale": "pt-BR",
+      "strings": {
+        "description": "Exibir e gerenciar serviços Windows",
+        "displayName": "Serviços",
+        "keywords_services": "Serviços"
+      }
+    },
+    {
+      "locale": "pt-PT",
+      "strings": {
+        "description": "Apresentar e gerir serviços Windows",
+        "displayName": "Serviços",
+        "keywords_services": "Serviços"
+      }
+    },
+    {
+      "locale": "ru-RU",
+      "strings": {
+        "description": "Отображение служб Windows и управление ими",
+        "displayName": "Службы",
+        "keywords_services": "Службы"
+      }
+    },
+    {
+      "locale": "sv-SE",
+      "strings": {
+        "description": "Visa och hantera Windows-tjänster",
+        "displayName": "Tjänster",
+        "keywords_services": "Tjänster"
+      }
+    },
+    {
+      "locale": "tr-TR",
+      "strings": {
+        "description": "Windows hizmetlerini göster ve yönet",
+        "displayName": "Hizmetler",
+        "keywords_services": "Hizmetler"
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "strings": {
+        "description": "显示和管理 Windows 服务",
+        "displayName": "服务",
+        "keywords_services": "服务"
+      }
+    },
+    {
+      "locale": "zh-TW",
+      "strings": {
+        "description": "顯示及管理 Windows 服務",
+        "displayName": "服務",
+        "keywords_services": "服務"
+      }
+    }
+  ],
+  "powerShellModuleName": "Microsoft.SME.ServiceViewer"
+}
