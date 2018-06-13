@@ -82,6 +82,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
+        console.log("Ng on init");
         this.rootSubscription = this.route.params.subscribe(params => {
             if (this.services) {
                 const urlName = this.getUrlServiceName();
@@ -164,6 +165,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     }
 
     public onRowSelect(service: ServiceData): void {
+        console.log("onRowSelect");
         this.serviceDependencyList = null;
         this.selectedService = service;
         this.updateServiceStatus(this.selectedService);

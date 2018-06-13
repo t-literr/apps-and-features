@@ -1,5 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AppContextService, DialogService, NavigationService } from '@msft-sme/shell/angular';
+import { AppContextService, AuthorizationService, NavigationService } from '@microsoft/windows-admin-center-sdk/angular';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'sme-root',
@@ -7,11 +11,11 @@ import { AppContextService, DialogService, NavigationService } from '@msft-sme/s
 })
 export class AppComponent implements OnDestroy, OnInit {
     constructor(
-        private appContext: AppContextService,  private navigationService: NavigationService, private dialogService: DialogService) {
+        private appContext: AppContextService,  private navigationService: NavigationService) {
     }
 
     public ngOnInit(): void {
-        this.appContext.ngInit({ dialogService: this.dialogService, navigationService: this.navigationService });
+        this.appContext.ngInit({ navigationService: this.navigationService });
     }
 
     public ngOnDestroy() {

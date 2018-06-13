@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
 import { CommonModule } from '@angular/common';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -12,12 +14,11 @@ import {
     IconModule,
     IdleModule,
     LoadingWheelModule,
-    NavigationService,
     PipesModule,
     ResourceService,
-    SmeStylesModule
-} from '@msft-sme/shell/angular';
-
+    SmeStylesModule,
+    SvgModule
+} from '@microsoft/windows-admin-center-sdk/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -32,6 +33,7 @@ import { AppComponent } from './app.component';
         DialogModule,
         FormsModule,
         SmeStylesModule,
+        SvgModule,
         IconModule,
         LoadingWheelModule,
         GuidedPanelModule,
@@ -46,10 +48,10 @@ import { AppComponent } from './app.component';
             useClass: AppErrorHandler
         }
     ],
-    bootstrap: [AppComponent]    
+    bootstrap: [AppComponent]
 })
 export class AppModule {
     constructor(private appContextService: AppContextService) {
-        this.appContextService.initializeModule({ });
+        this.appContextService.initializeModule({});
     }
 }

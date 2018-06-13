@@ -18,12 +18,12 @@ export class ServicesUtil {
                 if (item) {
                     const data: ServiceData = {
                         name: item.name,
-                        displayName: item.displayName,
-                        status: ServiceStatus[item.status],
-                        startupType: startupTypes[this.getServiceStartupType(item)],
-                        description: item.description,
-                        supportedControlCodes: item.supportedControlCodes,
-                        // The dependentServices get from GetServerServiceDetail() method really is 
+                        displayName: null,
+                        status: null,
+                        startupType: null,
+                        description: null,
+                        supportedControlCodes: null,
+                        // The dependentServices get from GetServerServiceDetail() method really is
                         //  antecedent services this service will depend on
                         antecedentServices: item.dependentServices
                     };

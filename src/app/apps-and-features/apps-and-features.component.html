@@ -1,0 +1,54 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved.
+ Licensed under the MIT License. -->
+
+ <sme-split-view class="sme-layout-absolute sme-position-inset-none" #sv>
+    <sme-split-view-content>
+        <sme-master-view #masterView header="Apps and Features" [total]="smeDataTable.renderedItems.length" [showSelection]="false"  [showFilter]="false" (refresh)="refresh()">
+            <sme-loading-wheel *ngIf="loading"></sme-loading-wheel>
+            <sme-action-bar #actionBar>
+                <sme-action-button #action [text]="'Add New'" [iconClass]="'sme-icon icon-win-add'"></sme-action-button>
+                <sme-action-button #action [text]="'Remove Selected'" [iconClass]="'sme-icon icon-win-delete'" (execute)="removeSelected()"></sme-action-button>
+            </sme-action-bar>
+
+            <input #search type="search" pInputText autofocus>
+
+            <sme-data-table #smeDataTable [items]="apps" selectionMode="multiple" [(selection)]="selectedApps" [globalFilter]="search" (click)="singleSelect(selectedApps[selectedApps.length - 1])" [defaultSortMode]="1">
+                <sme-data-table-column field="displayName" header="Name" sortable="true">
+                </sme-data-table-column>
+                <sme-data-table-column field="publisher" header="Publisher" sortable="true" [searchable]="false">
+                </sme-data-table-column>
+                <sme-data-table-column field="installDate" header="Installed On" sortable="true" [searchable]="false">
+                </sme-data-table-column>
+            </sme-data-table>
+        </sme-master-view>
+    </sme-split-view-content>
+
+    <sme-split-view-pane>
+        <sme-details [title]="strings.detailsTitle.format(selection ? selection.displayName : '')" [(isExpanded)]="sv.isExpanded">
+            <div class="sme-layout-absolute sme-position-inset-none sme-arrange-stack-h">
+            <div *ngIf="selection">
+                <div role="tabpanel" class="details-panel sme-margin-left-lg sme-layout-relative horizontal">
+                  <div>
+                    <label *ngIf="selection.displayName">{{strings.listItem.format("Name")}}</label>
+                    <div>{{selection.displayName}}</div>
+                  </div>
+                  <div>
+                    <label *ngIf="selection.displayName">{{strings.listItem.format("Publisher")}}</label>
+                    <div>{{selection.publisher}}</div>
+                  </div>
+                  <div>
+                    <label *ngIf="selection.displayName">{{strings.listItem.format("Installed On")}}</label>
+                    <div>{{selection.installDate}}</div>
+                  </div>
+                  <div>
+                    <label *ngIf="selection.displayName">{{strings.listItem.format("Version")}}</label>
+                    <div>{{selection.version}}</div>
+                  </div>
+                </div>
+            </div>
+            <div *ngIf="!selection" class="fixed-flex-size sme-margin-left-lg">Select an app to learn more.</div>
+            </div>
+        </sme-details>
+    </sme-split-view-pane>
+
+</sme-split-view>

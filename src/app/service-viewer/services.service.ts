@@ -25,7 +25,7 @@ export interface ServiceParams {
 @Injectable()
 export class ServicesService {
     // Defines a session shared key within the module.
-    public static psKey = 'sme.services';
+    public static psKey = 'sme.apps-and-features';
     private inventoryCache: ServerInventoryCache;
     public inventoryQueryCache = new QueryCache<ServerInventory, NodeNameParams>(
         params => this.createServerInventory(params),
