@@ -18,8 +18,8 @@ export class AppsAndFeaturesService {
     constructor(private appContextService: AppContextService) {
     }
 
-    /**
-     *  This method illustrates how to execute a PowerShell script within the context of SME / Honolulu.
+    /*
+     *  This method retrieves all modern apps installed on the current node.
      */
     public getApps(session: PowerShellSession): Observable<any[]> {
         let command = PowerShell.createCommand(PowerShellScripts.Get_Service);
@@ -30,19 +30,24 @@ export class AppsAndFeaturesService {
                     console.log(response)
                     for (const item of response.results) {
                         if (item) {
+                            // check if display name and publisher name are valid from manifest file
+                            // if they contain ms-resource, someone forgot to fill in that field and you
+                            // have to use the default value returned from get-appxpackage
+                            if (item.displayName.indexOf('ms-resource') !== -1) {
+                                item.displayName = item.name
+                            }
+                            if (item.publisherDisplayName.indexOf('ms-resource') !== -1) {
+                                item.publisherDisplayName = this.formatPublisher(item.publisher)
+                            }
                             const data: AppData = {
-                                displayName: item.name,
-                                publisher: this.formatPublisher(item.publisher),
+                                displayName: item.displayName,
+                                publisher: item.publisherDisplayName,
                                 prodID: item.identifyingNumber,
                                 version: item.version,
-                                installDate: this.formatDate(item.installDate),
-                                installLocation: item.installLocation
+                                installDate: item.installDate
                             };
                             if (data.displayName != null) {
                                 result.push(data);
-                            }
-                            if (item.name === '89006A2E.AutodeskSketchBook') {
-                                console.log(item)
                             }
                         }
                     }
@@ -51,7 +56,9 @@ export class AppsAndFeaturesService {
             });
     }
 
-    // convert date to month/day/year
+    /*
+     *  convert date to day/month/year
+     */
     public formatDate(date: string) {
         if (date != null) {
             let day = date.substring(6);
@@ -62,8 +69,10 @@ export class AppsAndFeaturesService {
         return '';
     }
 
-    // remove excess information and extract publisher name
-    // ex: "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    /*
+     *  remove excess information and extract publisher name
+     *  ex: "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+     */
     public formatPublisher(publisher: string) {
         if (publisher != null) {
             let firstEntry = publisher.split(',')[0];
@@ -72,6 +81,9 @@ export class AppsAndFeaturesService {
         return '';
     }
 
+    /*
+     *  This method uninstalls all selected apps in the current node.
+     */
     public removeApp(session: PowerShellSession, packageName: string): Observable<any[]> {
         let command = PowerShell.createCommand(PowerShellScripts.Get_Process, { packageName: packageName });
         return this.appContextService.powerShell.run(session, command);
