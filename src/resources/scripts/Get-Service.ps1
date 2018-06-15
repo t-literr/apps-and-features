@@ -11,6 +11,6 @@ Readers
 
 #>
 
-get-wmiobject -class Win32_Product
+Get-AppxPackage
 
 

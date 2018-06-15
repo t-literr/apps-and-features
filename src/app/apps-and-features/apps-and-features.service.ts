@@ -27,17 +27,22 @@ export class AppsAndFeaturesService {
             .map(response => {
                 const result: AppData[] = [];
                 if (response) {
+                    console.log(response)
                     for (const item of response.results) {
                         if (item) {
                             const data: AppData = {
                                 displayName: item.name,
-                                publisher: item.vendor,
+                                publisher: this.formatPublisher(item.publisher),
                                 prodID: item.identifyingNumber,
                                 version: item.version,
-                                installDate: this.formatDate(item.installDate)
+                                installDate: this.formatDate(item.installDate),
+                                installLocation: item.installLocation
                             };
                             if (data.displayName != null) {
                                 result.push(data);
+                            }
+                            if (item.name === '89006A2E.AutodeskSketchBook') {
+                                console.log(item)
                             }
                         }
                     }
@@ -46,6 +51,7 @@ export class AppsAndFeaturesService {
             });
     }
 
+    // convert date to month/day/year
     public formatDate(date: string) {
         if (date != null) {
             let day = date.substring(6);
@@ -56,8 +62,18 @@ export class AppsAndFeaturesService {
         return '';
     }
 
-    public removeApp(session: PowerShellSession, productID: string): Observable<any[]> {
-        let command = PowerShell.createCommand(PowerShellScripts.Get_Process, { prodID: productID });
+    // remove excess information and extract publisher name
+    // ex: "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    public formatPublisher(publisher: string) {
+        if (publisher != null) {
+            let firstEntry = publisher.split(',')[0];
+            return firstEntry.split('=')[1];
+        }
+        return '';
+    }
+
+    public removeApp(session: PowerShellSession, packageName: string): Observable<any[]> {
+        let command = PowerShell.createCommand(PowerShellScripts.Get_Process, { packageName: packageName });
         return this.appContextService.powerShell.run(session, command);
     }
 }
