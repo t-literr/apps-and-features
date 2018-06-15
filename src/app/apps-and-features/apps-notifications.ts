@@ -1,13 +1,13 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { AjaxError, Observable, Subscription } from 'rxjs';
 
-import { AppContextService } from '@microsoft/windows-admin-center-sdk/angular';
+import { AppContextService } from '@msft-sme/shell/angular';
 import { ClientNotification,
          ClientNotificationType,
          Net,
          NotificationState,
          PowerShellSession,
-         RpcShellNavigate } from '@microsoft/windows-admin-center-sdk/core';
+         RpcShellNavigate } from '@msft-sme/shell/core';
 
 import { AppsAndFeaturesService } from './apps-and-features.service';
 

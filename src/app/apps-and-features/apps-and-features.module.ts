@@ -13,7 +13,7 @@ import {
     SplitViewModule,
     SvgModule,
     ToolHeaderModule
-} from '@microsoft/windows-admin-center-sdk/angular';
+} from '@msft-sme/shell/angular';
 import { AppsAndFeaturesComponent } from './apps-and-features.component';
 import { AppsAndFeaturesRouting } from './apps-and-features.routing';
 import { AppsAndFeaturesService } from './apps-and-features.service';

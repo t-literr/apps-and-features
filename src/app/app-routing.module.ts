@@ -3,7 +3,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IdleComponent } from '@microsoft/windows-admin-center-sdk/angular';
+import { IdleComponent } from '@msft-sme/shell/angular';
 
 // These are the basic routes that are required in order to load an extension and make service calls.
 const appRoutes: Routes = [
@@ -14,21 +14,13 @@ const appRoutes: Routes = [
         component: IdleComponent
     },
     {
-        path: 'home',
+        path: '',
         loadChildren: 'app/apps-and-features/apps-and-features.module#AppsAndFeaturesModule'
-    },
-    {
-        path: 'overview',
-        loadChildren: 'app/overview/overview.module#OverviewModule'
-    },
-    {
-        path: 'dev',
-        loadChildren: 'app/dev-guide/dev-guide.module#DevGuideModule'
     },
     // this child route is used to route back to the home path when an invalid URL is provided to the browser.
     {
         path: '**',
-        redirectTo: 'home'  // double check navigation
+        redirectTo: ''  // double check navigation
     }
 ];
 

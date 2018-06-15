@@ -9,14 +9,14 @@ import { AppContextService,
         DialogService,
         ValidationAlerts,
         ValidationAlertSeverity
-} from '@microsoft/windows-admin-center-sdk/angular';
+} from '@msft-sme/shell/angular';
 import { ClientNotification,
         ClientNotificationType,
         Logging,
         LogLevel,
         Net,
         NotificationState,
-        PowerShellSession } from '@microsoft/windows-admin-center-sdk/core';
+        PowerShellSession } from '@msft-sme/shell/core';
 import { start } from 'repl';
 import { Observable } from 'rxjs';
 import { AjaxError } from 'rxjs/observable/dom/AjaxObservable';

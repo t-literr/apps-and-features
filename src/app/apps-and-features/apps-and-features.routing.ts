@@ -3,7 +3,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IdleComponent } from '@microsoft/windows-admin-center-sdk/angular';
+import { IdleComponent } from '@msft-sme/shell/angular';
 import { AppsAndFeaturesComponent } from './apps-and-features.component';
 
 const routes: Routes = [

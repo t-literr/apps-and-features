@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AppContextService, AuthorizationService, NavigationService } from '@microsoft/windows-admin-center-sdk/angular';
+import { AppContextService, AuthorizationService, NavigationService } from '@msft-sme/shell/angular';
 import { Observable } from 'rxjs';
 
 @Component({
