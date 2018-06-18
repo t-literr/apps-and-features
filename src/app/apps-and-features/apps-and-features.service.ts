@@ -44,7 +44,7 @@ export class AppsAndFeaturesService {
                                 publisher: item.publisherDisplayName,
                                 prodID: item.identifyingNumber,
                                 version: item.version,
-                                installDate: item.installDate
+                                installDate: this.formatDate(item.installDate)
                             };
                             if (data.displayName != null) {
                                 result.push(data);
@@ -58,12 +58,14 @@ export class AppsAndFeaturesService {
 
     /*
      *  convert date to day/month/year
+     *  original example: 2018-06-15T12:41:14.2387281-07:00
      */
     public formatDate(date: string) {
+        let spliced = date.split('-')
         if (date != null) {
-            let day = date.substring(6);
-            let month = date.substring(4, 6);
-            let year = date.substring(0, 4);
+            let day = spliced[2].substring(0, 2);
+            let month = spliced[1];
+            let year = spliced[0];
             return this.strings.date.format(month, day, year);
         }
         return '';
