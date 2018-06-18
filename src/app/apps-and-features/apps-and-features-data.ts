@@ -11,5 +11,6 @@ export class AppData {
     public publisher: string;
     public prodID: string;
     public version: string;
-    public installDate: any;
+    public installDate: string;
+    public size: string;
 }

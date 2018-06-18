@@ -19,6 +19,8 @@
                 </sme-data-table-column>
                 <sme-data-table-column field="installDate" header="Installed On" sortable="true" [searchable]="false">
                 </sme-data-table-column>
+                <sme-data-table-column field="size" header="Size" sortable="true" [searchable]="false" align="right">
+                </sme-data-table-column>
             </sme-data-table>
         </sme-master-view>
     </sme-split-view-content>
@@ -33,16 +35,20 @@
                     <div>{{selection.displayName}}</div>
                   </div>
                   <div>
-                    <label *ngIf="selection.displayName">{{strings.listItem.format("Publisher")}}</label>
+                    <label *ngIf="selection.publisher">{{strings.listItem.format("Publisher")}}</label>
                     <div>{{selection.publisher}}</div>
                   </div>
                   <div>
-                    <label *ngIf="selection.displayName">{{strings.listItem.format("Installed On")}}</label>
+                    <label *ngIf="selection.installDate">{{strings.listItem.format("Installed On")}}</label>
                     <div>{{selection.installDate}}</div>
                   </div>
                   <div>
-                    <label *ngIf="selection.displayName">{{strings.listItem.format("Version")}}</label>
+                    <label *ngIf="selection.version">{{strings.listItem.format("Version")}}</label>
                     <div>{{selection.version}}</div>
+                  </div>
+                  <div>
+                    <label *ngIf="selection.size">{{strings.listItem.format("Size")}}</label>
+                    <div>{{selection.size}}</div>
                   </div>
                 </div>
             </div>

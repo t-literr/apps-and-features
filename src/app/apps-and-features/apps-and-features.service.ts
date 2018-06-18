@@ -44,7 +44,8 @@ export class AppsAndFeaturesService {
                                 publisher: item.publisherDisplayName,
                                 prodID: item.identifyingNumber,
                                 version: item.version,
-                                installDate: this.formatDate(item.installDate)
+                                installDate: this.formatDate(item.installDate),
+                                size: item.size
                             };
                             if (data.displayName != null) {
                                 result.push(data);
