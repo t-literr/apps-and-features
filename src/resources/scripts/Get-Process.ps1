@@ -12,5 +12,5 @@ Administrators
 #>
 
 Param([string]$packageName)
-remove-appxpackage ($packageName)
+Remove-AppxPackage ($packageName)
 

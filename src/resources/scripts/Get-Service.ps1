@@ -41,6 +41,12 @@ function size([string] $directory) {
   $unit
 }
 
+# moves all images into assets folder
+# function getImages([string] $src, [string] $packageName) {
+#   $dest = '../assets/images/' + $displayName
+#   Copy-Item $src $dest
+# }
+
 $result = Get-AppxPackage
 
 foreach ($app in $result) {
@@ -50,13 +56,17 @@ foreach ($app in $result) {
 
   # get additional values for output
   $displayName = $content.Package.Properties.DisplayName
+  $backupName = $content.Package.Applications.Application.Executable
   $installDate = $manifestFile.LastWriteTime
   $publisherDisplayName = $content.Package.Properties.PublisherDisplayName
   $size = size($directory) #size[0] = size, size[1] = unit
   $sizeOutput = [string]$size[0] + " " + $size[1]
+  $logoURI = $directory + "\" + $content.Package.Applications.Application.VisualElements.Square44x44Logo
+  # getImages($logoURI, $app.PackageFullName)
 
   # add new values to object to pass to service class
   $app | add-member displayName $displayName
+  $app | add-member backupName $backupName
   $app | add-member installDate $installDate
   $app | add-member publisherDisplayName $publisherDisplayName
   $app | add-member size $sizeOutput
